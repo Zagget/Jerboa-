@@ -61,21 +61,20 @@ public class PlayerController : MonoBehaviour
             rb2D.velocity = new Vector2(rb2D.velocity.x, rb2D.velocity.y * 0.5f);
         }
     }
+
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
             groundCheck = true;
         }
-
     }
+
     public void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
             groundCheck = false;          
         }
-
     }
-
 }

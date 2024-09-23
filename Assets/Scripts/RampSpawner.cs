@@ -23,8 +23,6 @@ public class RampSpawner : MonoBehaviour
         SpriteRenderer spriteRenderer = rampObject.AddComponent<SpriteRenderer>();
         spriteRenderer.sprite = ramp;
 
-       
-
         rampWidth = spriteRenderer.sprite.bounds.size.x * rampObject.transform.localScale.x;
         rampHeight = spriteRenderer.sprite.bounds.size.y * rampObject.transform.localScale.y;
 
