@@ -132,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 468602255}
   - component: {fileID: 468602254}
-  - component: {fileID: 468602253}
+  - component: {fileID: 468602256}
   - component: {fileID: 468602252}
   - component: {fileID: 468602251}
   m_Layer: 0
@@ -203,7 +203,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ba5de5c7e68819a43b9a754e999cb84a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -213,20 +213,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 1
---- !u!114 &468602253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 468602250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 880c0b3f5be27e348bd2c04b1ef02da3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpForce: 3
+  m_Constraints: 0
 --- !u!212 &468602254
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -294,6 +281,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &468602256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468602250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e61e922b67be54941afaafd23a57c3bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 8
+  acceleration: 5
+  deceleration: 5
+  jumpForce: 10
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
