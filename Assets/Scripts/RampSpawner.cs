@@ -3,53 +3,62 @@ using UnityEngine;
 public class RampSpawner : MonoBehaviour
 {
     [Header("Ramp")]
-    public Sprite ramp;
+    public Sprite spriteRamp;
 
     public float rotation = -20;
     public float rampSpeed = 3;
-    float timeSinceLastUpdate;
+    public float rampMoveAmount = 1;
 
-    GameObject rampObject;
-    float rampWidth;
-    float rampHeight;
-
+    GameObject ramp;
     Vector2 startingPos;
-    float width;
-    float height;
+    Vector2 CurrentPos;
+        
+    float rampWidth, rampHeight;
+    float width, height;
+    float timeSinceLastUpdate, updateDelay;
 
     void Start()
     {
-        rampObject = new GameObject("Ramp");
-        SpriteRenderer spriteRenderer = rampObject.AddComponent<SpriteRenderer>();
-        spriteRenderer.sprite = ramp;
-
-        rampWidth = spriteRenderer.sprite.bounds.size.x * rampObject.transform.localScale.x;
-        rampHeight = spriteRenderer.sprite.bounds.size.y * rampObject.transform.localScale.y;
-
         height = 2f * Camera.main.orthographicSize;
         width = height * Camera.main.aspect;
 
-        rampObject.transform.rotation = Quaternion.Euler(0, 0, rotation);
-        BoxCollider2D collider = rampObject.AddComponent<BoxCollider2D>();
-        rampObject.tag = "Ground";
+        ramp = new GameObject("Ramp");
+        SpriteRenderer spriteRenderer = ramp.AddComponent<SpriteRenderer>();
+        spriteRenderer.sprite = spriteRamp;
+
+        ramp.transform.rotation = Quaternion.Euler(0, 0, rotation);
+
+        rampWidth = spriteRenderer.sprite.bounds.size.x * ramp.transform.localScale.x;
+        rampHeight = spriteRenderer.sprite.bounds.size.y * ramp.transform.localScale.y;
+
+        BoxCollider2D collider = ramp.AddComponent<BoxCollider2D>();
+        ramp.tag = "Ground";
 
         GetStartingPos();
-        GenerateHill();
+        CurrentPos = startingPos;
+        ramp.transform.position = startingPos;
     }
 
-    void GenerateHill()
+    void Update()
     {
-        rampObject.transform.position = startingPos;
-
         timeSinceLastUpdate += Time.deltaTime;
-
-        if (timeSinceLastUpdate >= rampSpeed)
+        updateDelay = 1f / rampSpeed;
+        
+        if (timeSinceLastUpdate >= updateDelay)
         {
-            Debug.Log("asdas");
+            timeSinceLastUpdate = 0;
+            MoveRamp();
         }
 
     }
 
+    private void MoveRamp()
+    {
+        CurrentPos.x -= rampSpeed * Time.deltaTime;
+        CurrentPos.y += rampSpeed * Time.deltaTime;
+
+        ramp.transform.position = CurrentPos;
+    }
 
     void GetStartingPos()
     {
