@@ -8,7 +8,10 @@ public class PlayerController : MonoBehaviour
     public float acceleration = 5f;
     public float deceleration = 10f;
 
-    Vector2 velocity = Vector2.zero;
+    public float jumpForce;
+    bool groundCheck = false;
+
+    float xVelocity;
 
     Rigidbody2D rb2D;
 
@@ -21,30 +24,58 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Movement();
+        PlayerJump();
     }
 
     void Movement()
     {
         float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
+ 
+        xVelocity += x * acceleration * Time.deltaTime;
 
-        velocity += new Vector2(x * acceleration * Time.deltaTime, y * acceleration * Time.deltaTime);
+        xVelocity = Mathf.Clamp(xVelocity, -maxSpeed, maxSpeed);
 
-        ApplyDeceleration(x, y);
+        if(groundCheck)
+        {
+            rb2D.velocity = new Vector2(xVelocity, rb2D.velocity.y);
+        }
+        else
+        {
+            rb2D.velocity = new Vector2(xVelocity, rb2D.velocity.y);
+        }
 
-        rb2D.velocity = new Vector2(velocity.x, velocity.y);
+        if (x == 0 || (x < 0 == xVelocity > 0))
+        {
+            xVelocity *= 1 - (deceleration * Time.fixedDeltaTime);
+        }
     }
 
-    void ApplyDeceleration(float x, float y)
+    void PlayerJump()
     {
-        if (x == 0 || (x < 0 == velocity.x > 0))
+      if(Input.GetButtonDown("Jump") && groundCheck == true) 
         {
-            velocity.x *= 1 - (deceleration * Time.fixedDeltaTime);
+            rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
         }
-
-        if (y == 0 || (y < 0 == velocity.y > 0))
+      if(Input.GetButtonUp("Jump") && rb2D.velocity.y > 0) 
         {
-            velocity.y *= 1 - (deceleration * Time.fixedDeltaTime);
+            rb2D.velocity = new Vector2(rb2D.velocity.x, rb2D.velocity.y * 0.5f);
         }
     }
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            groundCheck = true;
+        }
+
+    }
+    public void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            groundCheck = false;          
+        }
+
+    }
+
 }
