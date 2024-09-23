@@ -7,15 +7,15 @@ public class RampSpawner : MonoBehaviour
 
     public float rotation = -20;
     public float rampSpeed = 3;
-    public float rampMoveAmount = 1;
 
     GameObject ramp;
+    GameObject cloneRamp;
     Vector2 startingPos;
-    Vector2 CurrentPos;
-        
+    Vector2 currentPos;
+    Vector2 currentClonePos;
+
     float rampWidth, rampHeight;
     float width, height;
-    float timeSinceLastUpdate, updateDelay;
 
     void Start()
     {
@@ -33,31 +33,29 @@ public class RampSpawner : MonoBehaviour
 
         BoxCollider2D collider = ramp.AddComponent<BoxCollider2D>();
         ramp.tag = "Ground";
+        cloneRamp = Instantiate(ramp);
 
         GetStartingPos();
-        CurrentPos = startingPos;
         ramp.transform.position = startingPos;
+        cloneRamp.transform.Translate(new Vector3(rampWidth, startingPos.y), Space.Self);
     }
 
     void Update()
     {
-        timeSinceLastUpdate += Time.deltaTime;
-        updateDelay = 1f / rampSpeed;
-        
-        if (timeSinceLastUpdate >= updateDelay)
-        {
-            timeSinceLastUpdate = 0;
-            MoveRamp();
-        }
-
+        MoveRamp();
+        MoveClone();
     }
 
-    private void MoveRamp()
+    void MoveRamp()
     {
-        CurrentPos.x -= rampSpeed * Time.deltaTime;
-        CurrentPos.y += rampSpeed * Time.deltaTime;
+        ramp.transform.Translate(new Vector3(-rampSpeed * Time.deltaTime, 0), Space.Self);
+        currentPos = ramp.transform.position; 
+    }
 
-        ramp.transform.position = CurrentPos;
+    void MoveClone()
+    {
+        cloneRamp.transform.Translate(new Vector3(-rampSpeed * Time.deltaTime, 0), Space.Self);
+        currentClonePos = cloneRamp.transform.position;
     }
 
     void GetStartingPos()
