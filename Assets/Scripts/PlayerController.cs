@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public float acceleration = 5f;
     public float deceleration = 10f;
 
-    public float jumpForce;
+    public float jumpForce = 5;
     bool groundCheck = false;
 
     float xVelocity;
