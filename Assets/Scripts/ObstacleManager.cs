@@ -9,38 +9,64 @@ public class ObstacleSpawner : MonoBehaviour
     public GameObject Obstacle3;
 
     GameObject[] obstacleArray;
+    GameObject currentObstacle;
 
+    public float maxSpeed = 10f;
     public float speed;
 
     float xVelocity;
+    float screenHalfWidthInWorldUnits;
+    float halfObstacleWidth;
 
     Rigidbody2D rb2D;
+
+    RampSpawner rampSpawner;
 
     bool hasSpawned = false;
     // Start is called before the first frame update
     void Start()
     {
+        rampSpawner = FindAnyObjectByType<RampSpawner>();
+
+        halfObstacleWidth = transform.localScale.x / 2f;
+        screenHalfWidthInWorldUnits = Camera.main.aspect * Camera.main.orthographicSize;
+
         obstacleArray = new GameObject[] {Obstacle1, Obstacle2, Obstacle3};
 
-        Invoke(nameof(SpawnObstacle), 5);
+        Invoke(nameof(SpawnObstacle), 3);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(hasSpawned)
-        {
-            xVelocity += speed * Time.deltaTime;
-            rb2D.velocity = new Vector2(xVelocity, rb2D.velocity.y);
-        }   
+        MoveObstacle();
     }
 
     public void SpawnObstacle()
     {
-        GameObject currentObstacle = Instantiate(obstacleArray[Random.Range(0, obstacleArray.Length)], transform.position, transform.rotation);
+        Vector2 rampPos = rampSpawner.GetStartingPos();
+
+        Vector2 spawnPos = rampPos + new Vector2(10, 1);
+
+        currentObstacle = Instantiate(obstacleArray[Random.Range(0, obstacleArray.Length)], spawnPos, transform.rotation);
         rb2D = currentObstacle.GetComponent<Rigidbody2D>();
         hasSpawned = true;
 
+    }
+
+    public void MoveObstacle()
+    {
+        if (hasSpawned)
+        {
+            xVelocity += -speed * Time.deltaTime;
+            xVelocity = Mathf.Clamp(xVelocity, -maxSpeed, 0);
+            rb2D.velocity = new Vector2(xVelocity, rb2D.velocity.y);
+            if (currentObstacle.transform.position.x < -screenHalfWidthInWorldUnits - halfObstacleWidth)
+            {
+                Destroy(currentObstacle.gameObject);
+                SpawnObstacle();
+            }
+        }
     }
 }
