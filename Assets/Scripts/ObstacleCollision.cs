@@ -7,7 +7,7 @@ public class ObstacleCollision : MonoBehaviour
     public float currentHits = 0;
     public float maxHits;
 
-    public void OnTriggerEnter2D(Collider2D collider)
+    public void OnCollisionEnter2D(Collision2D collider)
     {
         if(collider.gameObject.CompareTag("Obstacle"))
         {
@@ -19,7 +19,7 @@ public class ObstacleCollision : MonoBehaviour
             }
         }
     }
-    public void OnTriggerExit2D(Collider2D collision)
+    public void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
