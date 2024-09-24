@@ -249,7 +249,7 @@ MonoBehaviour:
   maxSpeed: 8
   acceleration: 5
   deceleration: 10
-  jumpForce: 5
+  jumpForce: 8
 --- !u!212 &1082946601
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -432,7 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5a422335751ee74c9de461e6eb8a294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRamp: {fileID: 21300000, guid: a6f48e6ba5d65ed46bb156b4cb8f9064, type: 3}
+  spriteRamp: {fileID: 21300000, guid: d5627feac8c3e854f8d356c13faa44cf, type: 3}
   rotation: -12
   rampSpeed: 0.72
 --- !u!4 &1270332400

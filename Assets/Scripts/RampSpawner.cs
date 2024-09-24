@@ -17,45 +17,105 @@ public class RampSpawner : MonoBehaviour
     float rampWidth, rampHeight;
     float width, height;
 
+    bool rampAlive;
+    bool cloneAlive;
+
     void Start()
     {
         height = 2f * Camera.main.orthographicSize;
         width = height * Camera.main.aspect;
-
-        ramp = new GameObject("Ramp");
-        SpriteRenderer spriteRenderer = ramp.AddComponent<SpriteRenderer>();
-        spriteRenderer.sprite = spriteRamp;
-
-        ramp.transform.rotation = Quaternion.Euler(0, 0, rotation);
-
-        rampWidth = spriteRenderer.sprite.bounds.size.x * ramp.transform.localScale.x;
-        rampHeight = spriteRenderer.sprite.bounds.size.y * ramp.transform.localScale.y;
-
-        BoxCollider2D collider = ramp.AddComponent<BoxCollider2D>();
-        ramp.tag = "Ground";
-        cloneRamp = Instantiate(ramp);
-
-        GetStartingPos();
-        ramp.transform.position = startingPos;
-        cloneRamp.transform.Translate(new Vector3(rampWidth, startingPos.y), Space.Self);
+        AddRamp();
     }
 
     void Update()
     {
+        RemoveRamp();
+        AddRamp();
+        
+
+        RemoveClone();
+        AddClone();
+
+
         MoveRamp();
         MoveClone();
     }
 
+    void RemoveRamp()
+    {
+        if (currentPos.x < -width * 0.5f - rampWidth) 
+        {
+            Destroy(ramp);
+            rampAlive = false;
+        }
+    }
+
+    void AddRamp()
+    {
+        if (!rampAlive)
+        {
+            ramp = new GameObject("Ramp");
+            SpriteRenderer spriteRenderer = ramp.AddComponent<SpriteRenderer>();
+            spriteRenderer.sprite = spriteRamp;
+
+            ramp.transform.rotation = Quaternion.Euler(0, 0, rotation);
+
+            rampWidth = spriteRenderer.sprite.bounds.size.x * ramp.transform.localScale.x;
+            rampHeight = spriteRenderer.sprite.bounds.size.y * ramp.transform.localScale.y;
+
+            GetStartingPos();
+            ramp.transform.position = startingPos;
+
+
+            BoxCollider2D collider = ramp.AddComponent<BoxCollider2D>();
+            ramp.tag = "Ground";
+            rampAlive = true;
+        }
+    }
+
+
+    void RemoveClone()
+    {
+        if (cloneAlive)
+        {
+            if (currentClonePos.x < startingPos.x + (rampWidth * 0.5f))
+            {
+                Destroy(cloneRamp);
+                cloneAlive = false;
+            }
+
+        }
+    }
+
     void MoveRamp()
     {
-        ramp.transform.Translate(new Vector3(-rampSpeed * Time.deltaTime, 0), Space.Self);
-        currentPos = ramp.transform.position; 
+        if (rampAlive)
+        {
+            ramp.transform.Translate(new Vector3(-rampSpeed * Time.deltaTime, 0), Space.Self);
+            currentPos = ramp.transform.position; 
+        }
     }
 
     void MoveClone()
     {
-        cloneRamp.transform.Translate(new Vector3(-rampSpeed * Time.deltaTime, 0), Space.Self);
-        currentClonePos = cloneRamp.transform.position;
+        if (cloneAlive)
+        {
+            cloneRamp.transform.Translate(new Vector3(-rampSpeed * Time.deltaTime, 0), Space.Self);
+            currentClonePos = cloneRamp.transform.position;
+        }
+    }
+
+
+    void AddClone()
+    {
+        if (!cloneAlive)
+        {
+            cloneRamp = Instantiate(ramp);
+
+            cloneRamp.transform.Translate(new Vector3(rampWidth, 0, 0), Space.Self);
+
+            cloneAlive = true;
+        }
     }
 
     void GetStartingPos()
@@ -69,7 +129,5 @@ public class RampSpawner : MonoBehaviour
         adjustedY += rampWidth * 0.5f * Mathf.Sin(rotation * Mathf.Deg2Rad);
 
         startingPos = new Vector2(adjustedX, adjustedY);
-
-        Debug.Log("Starting Position: " + startingPos);
     }
 }
