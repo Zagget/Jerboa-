@@ -1,9 +1,12 @@
 using UnityEngine;
- 
+
+[ExecuteInEditMode]
 public class Parallax : MonoBehaviour {
     private Transform cam;
     private Vector3 prevCamPos;
     public float simulatedDistance;
+
+    private const int flip = -1;
  
     void Awake(){
         cam = Camera.main.transform;
@@ -18,6 +21,7 @@ public class Parallax : MonoBehaviour {
         Vector3 camDelta = cam.position - prevCamPos;
         camDelta.z = 0;
         prevCamPos = cam.position;
-        transform.position += -camDelta / simulatedDistance;        
+        transform.position += camDelta;
+        transform.position += (camDelta / simulatedDistance) * flip;        
     }
 }
