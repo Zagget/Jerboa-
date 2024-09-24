@@ -32,10 +32,8 @@ public class RampSpawner : MonoBehaviour
         RemoveRamp();
         AddRamp();
         
-
         RemoveClone();
         AddClone();
-
 
         MoveRamp();
         MoveClone();
