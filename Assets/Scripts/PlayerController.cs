@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
     float screenHalfWidthInWorldUnits;
     float halfPlayerWidth;
 
+    public AudioSource jump;
+   
+
     Rigidbody2D rb2D;
 
     void Start()
@@ -66,7 +69,7 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector2 playerPos = transform.position;
-        playerPos.x = Mathf.Clamp(playerPos.x, -screenHalfWidthInWorldUnits + halfPlayerWidth, screenHalfWidthInWorldUnits - (5 * halfPlayerWidth));
+        playerPos.x = Mathf.Clamp(playerPos.x, -screenHalfWidthInWorldUnits + halfPlayerWidth, screenHalfWidthInWorldUnits - (6 * halfPlayerWidth));
         transform.position = playerPos;
     }
 
@@ -75,6 +78,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && groundCheck)
         {
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
+            jump.Play();
+           
         }
         if (Input.GetButtonUp("Jump") && rb2D.velocity.y > 0)
         {
