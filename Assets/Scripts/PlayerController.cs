@@ -1,9 +1,13 @@
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject gameUI;
+    public GameObject player;
+
+    SpriteRenderer spriteRenderer;
+
+
     public float maxSpeed = 8f;
     public float acceleration = 5f;
     public float deceleration = 10f;
@@ -16,26 +20,84 @@ public class PlayerController : MonoBehaviour
     bool isGliding = false;
 
     float xVelocity;
+    bool isPlaying;
+
+    Vector2 startingPos = Vector2.zero;
 
     float screenHalfWidthInWorldUnits;
     float halfPlayerWidth;
+
+    public AudioSource jump;
 
     Rigidbody2D rb2D;
 
     void Start()
     {
+        //playerScore = FindAnyObjectByType<PlayerScore>();
         Application.targetFrameRate = 60;
+        spriteRenderer = player.GetComponent<SpriteRenderer>();
         rb2D = GetComponent<Rigidbody2D>();
+
 
         halfPlayerWidth = transform.localScale.x / 2f;
         screenHalfWidthInWorldUnits = Camera.main.aspect * Camera.main.orthographicSize;
+
+        
+        startingPos = rb2D.transform.position;
+
+        OnGameOver();
+
+        UiManager sceneManager = FindObjectOfType<UiManager>();
+        if (sceneManager != null)
+        {
+            sceneManager.OnPlaying += OnPlaying;
+        }
+        else
+        {
+            Debug.LogWarning("SceneManager not found.");
+        }
+
+        ObstacleCollision obstacleCollision = FindObjectOfType<ObstacleCollision>();
+        if (obstacleCollision != null)
+        {
+            obstacleCollision.OnGameOver += OnGameOver;
+        }
+        else
+        {
+            Debug.LogWarning("ObstacleCollision component not found.");
+        }
+
+
+    }
+    
+    void OnPlaying()
+    {
+        isPlaying = true;
+        rb2D.position = startingPos;
+        spriteRenderer.enabled = true;
+        rb2D.gravityScale = 1f;
+        gameUI.SetActive(true);
+        
+    }
+
+    void OnGameOver()
+    {
+        isPlaying = false;
+        spriteRenderer.enabled = false;
+        rb2D.gravityScale = 0f;
+        rb2D.velocity = Vector2.zero;  
+        rb2D.angularVelocity = 0f;
+        transform.position = startingPos;
     }
 
     void Update()
     {
-        Movement();
-        PlayerJump();
-        PlayerGlide();
+        if (isPlaying) 
+        {
+            Movement();
+            PlayerJump();
+            PlayerGlide();
+        }
     }
 
     void Movement()
@@ -66,7 +128,7 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector2 playerPos = transform.position;
-        playerPos.x = Mathf.Clamp(playerPos.x, -screenHalfWidthInWorldUnits + halfPlayerWidth, screenHalfWidthInWorldUnits - (5 * halfPlayerWidth));
+        playerPos.x = Mathf.Clamp(playerPos.x, -screenHalfWidthInWorldUnits + halfPlayerWidth, screenHalfWidthInWorldUnits - (6 * halfPlayerWidth));
         transform.position = playerPos;
     }
 
@@ -75,6 +137,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && groundCheck)
         {
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
+            jump.Play();
+           
         }
         if (Input.GetButtonUp("Jump") && rb2D.velocity.y > 0)
         {
@@ -95,7 +159,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnCollisionStay2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {

@@ -7,15 +7,17 @@ public class ObstacleCollision : MonoBehaviour
 
     public event System.Action OnGameOver;
 
+    public AudioSource hurt;
+
     public void OnCollisionEnter2D(Collision2D collider)
     {
         if(collider.gameObject.CompareTag("Obstacle"))
         {
+            hurt.Play();
             currentHits++;
             GetComponent<SpriteRenderer>().color = Color.red;
             if(currentHits == maxHits)
             {
-                Destroy(gameObject);
                 OnGameOver();
                 currentHits = 0;
             }

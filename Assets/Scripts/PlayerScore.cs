@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -8,7 +6,7 @@ public class PlayerScore : MonoBehaviour
     ObstacleManager obstacleManager;
     Vector2 playerPos;
 
-    bool hasPassedObstacle = false;
+   // float numbOfFlips = 0;
 
     int score = 0;
     public TMP_Text scoreText;
@@ -27,15 +25,7 @@ public class PlayerScore : MonoBehaviour
 
         scoreText.text = $"Score: {score}";
         score++;
-        
-        if( obstaclePos.x < playerPos.x && hasPassedObstacle == false)
-        {
-            score = score + 10;
-            hasPassedObstacle = true;
-        }
-        if(obstacleManager.DestroyObstacle() == true)
-        {
-            hasPassedObstacle = false;
-        }
+            
+        return;
     }
 }
