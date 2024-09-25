@@ -825,14 +825,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61e922b67be54941afaafd23a57c3bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1082946599}
   maxSpeed: 8
   acceleration: 5
   deceleration: 10
   glideSpeed: 2
   glideHorizontalMultiplier: 0.95
   jumpForce: 5
-  jump: {fileID: 0}
 --- !u!212 &1082946601
 SpriteRenderer:
   m_ObjectHideFlags: 0
