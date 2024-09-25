@@ -17,12 +17,18 @@ public class PlayerController : MonoBehaviour
 
     float xVelocity;
 
+    float screenHalfWidthInWorldUnits;
+    float halfPlayerWidth;
+
     Rigidbody2D rb2D;
 
     void Start()
     {
         Application.targetFrameRate = 60;
         rb2D = GetComponent<Rigidbody2D>();
+
+        halfPlayerWidth = transform.localScale.x / 2f;
+        screenHalfWidthInWorldUnits = Camera.main.aspect * Camera.main.orthographicSize;
     }
 
     void Update()
@@ -58,6 +64,10 @@ public class PlayerController : MonoBehaviour
         {
             xVelocity -= Mathf.Sign(xVelocity) * deceleration * Time.deltaTime;
         }
+
+        Vector2 playerPos = transform.position;
+        playerPos.x = Mathf.Clamp(playerPos.x, -screenHalfWidthInWorldUnits + halfPlayerWidth, screenHalfWidthInWorldUnits - (5 * halfPlayerWidth));
+        transform.position = playerPos;
     }
 
     void PlayerJump()
