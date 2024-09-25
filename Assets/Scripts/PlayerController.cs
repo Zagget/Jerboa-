@@ -72,7 +72,12 @@ public class PlayerController : MonoBehaviour
     
     void OnPlaying()
     {
+<<<<<<< Updated upstream
         rb2D.position = startingPos;
+=======
+        isPlaying = true;
+        spriteRenderer.enabled = true;
+>>>>>>> Stashed changes
         rb2D.gravityScale = 1f;
         gameUI.SetActive(true);
         spriteRenderer.enabled = true;
@@ -84,9 +89,9 @@ public class PlayerController : MonoBehaviour
         isPlaying = false;
         spriteRenderer.enabled = false;
         rb2D.gravityScale = 0f;
+        rb2D.position = startingPos;
         rb2D.velocity = Vector2.zero;  
         rb2D.angularVelocity = 0f;
-        transform.position = startingPos;
     }
 
     void Update()
