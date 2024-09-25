@@ -35,11 +35,11 @@ public class PlayerController : MonoBehaviour
         Application.targetFrameRate = 60;
         spriteRenderer = player.GetComponent<SpriteRenderer>();
         rb2D = GetComponent<Rigidbody2D>();
-<<<<<<< Updated upstream
+
 
         halfPlayerWidth = transform.localScale.x / 2f;
         screenHalfWidthInWorldUnits = Camera.main.aspect * Camera.main.orthographicSize;
-=======
+
         
         startingPos = rb2D.transform.position;
 
@@ -84,7 +84,6 @@ public class PlayerController : MonoBehaviour
         rb2D.velocity = Vector2.zero;  
         rb2D.angularVelocity = 0f;
         transform.position = startingPos;
->>>>>>> Stashed changes
     }
 
     void Update()
