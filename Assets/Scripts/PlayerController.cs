@@ -29,15 +29,17 @@ public class PlayerController : MonoBehaviour
 
     public AudioSource jump;
 
+    PlayerScore playerScore;
+
     Rigidbody2D rb2D;
 
     void Start()
     {
-        //playerScore = FindAnyObjectByType<PlayerScore>();
         Application.targetFrameRate = 60;
         spriteRenderer = player.GetComponent<SpriteRenderer>();
         rb2D = GetComponent<Rigidbody2D>();
 
+        playerScore = FindObjectOfType<PlayerScore>();
 
         halfPlayerWidth = transform.localScale.x / 2f;
         screenHalfWidthInWorldUnits = Camera.main.aspect * Camera.main.orthographicSize;
@@ -80,8 +82,13 @@ public class PlayerController : MonoBehaviour
 >>>>>>> Stashed changes
         rb2D.gravityScale = 1f;
         gameUI.SetActive(true);
+<<<<<<< HEAD
         spriteRenderer.enabled = true;
         isPlaying = true;
+=======
+        playerScore.ResetScore();
+        playerScore.SetPlaying(true);
+>>>>>>> 65477361e65b2a5927e8aa304863145c52b45957
     }
 
     void OnGameOver()
@@ -92,6 +99,11 @@ public class PlayerController : MonoBehaviour
         rb2D.position = startingPos;
         rb2D.velocity = Vector2.zero;  
         rb2D.angularVelocity = 0f;
+<<<<<<< HEAD
+=======
+        transform.position = startingPos;
+        playerScore.SetPlaying(false);
+>>>>>>> 65477361e65b2a5927e8aa304863145c52b45957
     }
 
     void Update()
