@@ -299,7 +299,7 @@ MonoBehaviour:
   deceleration: 10
   glideSpeed: 2
   glideHorizontalMultiplier: 0.95
-  jumpForce: 8
+  jumpForce: 10
   jump: {fileID: 148948332}
 --- !u!114 &148948328
 MonoBehaviour:

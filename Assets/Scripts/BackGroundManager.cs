@@ -27,14 +27,32 @@ public class BackGroundManager : MonoBehaviour
     public GameObject purplemist;
     public GameObject grassstraw;
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        // Move each background layer
+        MoveBackground(Clouds, speedAll);
+        MoveBackground(blue, speedAll);
+        MoveBackground(stars, speedStars); // Stars move at a different speed
+        MoveBackground(Mountains, speedAll);
+        MoveBackground(dune1, speedAll);
+        MoveBackground(dune2, speedAll);
+        MoveBackground(purplemist, speedAll);
+        MoveBackground(grassstraw, speedAll);
+    }
+
+    private void MoveBackground(GameObject backgroundLayer, float speed)
+    {
+        if (backgroundLayer != null)
+        {
+            // Move the background layer
+            backgroundLayer.transform.Translate(Vector3.left * speed * Time.deltaTime);
+
+            // Check if the background layer is out of view and reset its position
+            if (backgroundLayer.transform.position.x < -15f) // Adjust this value as needed
+            {
+                // Reset to the right side of the screen (assuming a width of 15 units)
+                backgroundLayer.transform.position = new Vector3(15f, backgroundLayer.transform.position.y, backgroundLayer.transform.position.z);
+            }
+        }
     }
 }
