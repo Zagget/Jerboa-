@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObstacleCollision : MonoBehaviour
 {
     public float currentHits = 0;
     public float maxHits;
+
+    public event System.Action OnGameOver;
 
     public void OnCollisionEnter2D(Collision2D collider)
     {
@@ -16,9 +16,12 @@ public class ObstacleCollision : MonoBehaviour
             if(currentHits == maxHits)
             {
                 Destroy(gameObject);
+                OnGameOver();
+                currentHits = 0;
             }
         }
     }
+
     public void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Obstacle"))
