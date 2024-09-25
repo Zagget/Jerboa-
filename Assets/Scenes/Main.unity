@@ -700,15 +700,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 2507890242712637206, guid: a88ab8b1a6837194d915041f9f622bfd, type: 3}
-<<<<<<< Updated upstream
-    - {fileID: 4977979160328890518, guid: a88ab8b1a6837194d915041f9f622bfd, type: 3}
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7717309751607821946, guid: a88ab8b1a6837194d915041f9f622bfd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 600472484}
-=======
     m_AddedGameObjects: []
->>>>>>> Stashed changes
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a88ab8b1a6837194d915041f9f622bfd, type: 3}
 --- !u!1 &236909254
@@ -2413,15 +2405,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7262971979324020761, guid: c447369e14c390249a1cc55e50f509e3, type: 3}
-<<<<<<< Updated upstream
-    - {fileID: 4512112541277348048, guid: c447369e14c390249a1cc55e50f509e3, type: 3}
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 2347300591867351505, guid: c447369e14c390249a1cc55e50f509e3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 403366429}
-=======
     m_AddedGameObjects: []
->>>>>>> Stashed changes
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c447369e14c390249a1cc55e50f509e3, type: 3}
 --- !u!1 &1483717000
@@ -3075,16 +3059,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
-<<<<<<< Updated upstream
-    - {fileID: 6681272985980588047, guid: 016ae58f4672d3b4ea76fcdf07c42cfe, type: 3}
-    - {fileID: 3808635547318078118, guid: 016ae58f4672d3b4ea76fcdf07c42cfe, type: 3}
-    - {fileID: 2320358677382080252, guid: 016ae58f4672d3b4ea76fcdf07c42cfe, type: 3}
-    - {fileID: 1797046659210638861, guid: 016ae58f4672d3b4ea76fcdf07c42cfe, type: 3}
-=======
     - {fileID: 3808635547318078118, guid: 016ae58f4672d3b4ea76fcdf07c42cfe, type: 3}
     - {fileID: 2320358677382080252, guid: 016ae58f4672d3b4ea76fcdf07c42cfe, type: 3}
     - {fileID: 6681272985980588047, guid: 016ae58f4672d3b4ea76fcdf07c42cfe, type: 3}
->>>>>>> Stashed changes
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 632707608816015593, guid: 016ae58f4672d3b4ea76fcdf07c42cfe, type: 3}
       insertIndex: -1
@@ -3349,29 +3326,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9419764b8d913cb48bf982b72e4a0070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< Updated upstream
-  backgroundLayers:
-  - layer: {fileID: 2088687222}
-    speed: 0.17
-    objectWidth: 0
-    startingPos: {x: 0, y: 0, z: 0}
-  - layer: {fileID: 1644627301}
-    speed: 0.22
-    objectWidth: 0
-    startingPos: {x: 0, y: 0, z: 0}
-  - layer: {fileID: 576004257}
-    speed: 0.3
-    objectWidth: 0
-    startingPos: {x: 0, y: 0, z: 0}
-  - layer: {fileID: 347867319}
-    speed: 1.8
-    objectWidth: 0
-    startingPos: {x: 0, y: 0, z: 0}
-  - layer: {fileID: 919885991}
-    speed: 4
-    objectWidth: 0
-    startingPos: {x: 0, y: 0, z: 0}
-=======
   speedClouds: 0
   speedBlue: 0
   speedStars: 0
@@ -3384,7 +3338,6 @@ MonoBehaviour:
   Mountains: {fileID: 576004257}
   dune1: {fileID: 347867319}
   dune2: {fileID: 919885991}
->>>>>>> Stashed changes
 --- !u!1001 &1822995803408121702
 PrefabInstance:
   m_ObjectHideFlags: 0
