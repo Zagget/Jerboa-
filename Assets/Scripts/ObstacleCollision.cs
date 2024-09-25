@@ -18,7 +18,6 @@ public class ObstacleCollision : MonoBehaviour
             GetComponent<SpriteRenderer>().color = Color.red;
             if(currentHits == maxHits)
             {
-                Destroy(gameObject);
                 OnGameOver();
                 currentHits = 0;
             }
