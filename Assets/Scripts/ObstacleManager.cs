@@ -46,6 +46,8 @@ public class ObstacleManager : MonoBehaviour
 
     public void SpawnObstacle()
     {
+        currentObstacle = new GameObject();
+
         Vector2 rampPos = rampSpawner.GetStartingPos();
 
         Vector2 spawnPos = rampPos + new Vector2(10, 1);
@@ -71,14 +73,21 @@ public class ObstacleManager : MonoBehaviour
     }
     public Vector2 GetCurrentObstaclePos()
     {
-        return currentObstacle.transform.position;
+        if(currentObstacle != null)
+        {
+            return currentObstacle.transform.position;
+
+        }
+        return Vector2.zero;
     }
-    public void DestroyObstacle()
+    public bool DestroyObstacle()
     {
-        if (currentObstacle.transform.position.x < -screenHalfWidthInWorldUnits - halfObstacleWidth)
+        if (currentObstacle != null && currentObstacle.transform.position.x < -screenHalfWidthInWorldUnits - halfObstacleWidth)
         {
             Destroy(currentObstacle.gameObject);
             SpawnObstacle();
+            return true;
         }
+        return false;
     }
 }
