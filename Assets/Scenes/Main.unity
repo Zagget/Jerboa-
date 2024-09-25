@@ -285,7 +285,7 @@ MonoBehaviour:
   deceleration: 10
   glideSpeed: 2
   glideHorizontalMultiplier: 0.95
-  jumpForce: 5
+  jumpForce: 8
 --- !u!114 &148948328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHits: 0
-  maxHits: 0
+  maxHits: 3
 --- !u!1001 &207152376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -808,7 +808,7 @@ Transform:
   m_GameObject: {fileID: 1483717000}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.27, y: -4.54, z: -10.052734}
+  m_LocalPosition: {x: 12.96, y: -4.87, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -829,7 +829,8 @@ MonoBehaviour:
   Obstacle1: {fileID: 3166550175897515702, guid: fbc090d1bf6977645bf597ad1c8bd206, type: 3}
   Obstacle2: {fileID: 1790392575664798843, guid: 61155197bf843284790eff0880e3d10b, type: 3}
   Obstacle3: {fileID: 5705772026917727793, guid: 71598429ca68d094a89e1c9299d66267, type: 3}
-  speed: -5
+  maxSpeed: 10
+  speed: 5
 --- !u!1 &1533563972
 GameObject:
   m_ObjectHideFlags: 0
