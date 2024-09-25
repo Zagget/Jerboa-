@@ -1,13 +1,18 @@
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
+using Unity.VisualScripting;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject gameUI;
     public GameObject player;
 
     SpriteRenderer spriteRenderer;
-    
+
+
     public float maxSpeed = 8f;
     public float acceleration = 5f;
     public float deceleration = 10f;
@@ -28,13 +33,12 @@ public class PlayerController : MonoBehaviour
     float halfPlayerWidth;
 
     public AudioSource jump;
-   
 
     Rigidbody2D rb2D;
 
     void Start()
     {
-
+        //playerScore = FindAnyObjectByType<PlayerScore>();
         Application.targetFrameRate = 60;
         spriteRenderer = player.GetComponent<SpriteRenderer>();
         rb2D = GetComponent<Rigidbody2D>();
@@ -77,6 +81,8 @@ public class PlayerController : MonoBehaviour
         rb2D.position = startingPos;
         spriteRenderer.enabled = true;
         rb2D.gravityScale = 1f;
+        gameUI.SetActive(true);
+        
     }
 
     void OnGameOver()
@@ -158,7 +164,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnCollisionStay2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
