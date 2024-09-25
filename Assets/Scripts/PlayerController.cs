@@ -72,12 +72,11 @@ public class PlayerController : MonoBehaviour
     
     void OnPlaying()
     {
-        isPlaying = true;
         rb2D.position = startingPos;
-        spriteRenderer.enabled = true;
         rb2D.gravityScale = 1f;
         gameUI.SetActive(true);
-        
+        spriteRenderer.enabled = true;
+        isPlaying = true;
     }
 
     void OnGameOver()

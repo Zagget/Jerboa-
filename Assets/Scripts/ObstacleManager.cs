@@ -44,7 +44,6 @@ public class ObstacleManager : MonoBehaviour
 
     public void SpawnObstacle()
     {
-        currentObstacle = new GameObject();
 
         Vector2 rampPos = rampSpawner.GetStartingPos();
 
