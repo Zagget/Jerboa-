@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 public class BackGroundManager : MonoBehaviour
@@ -44,13 +43,10 @@ public class BackGroundManager : MonoBehaviour
     {
         if (backgroundLayer != null)
         {
-            // Move the background layer
             backgroundLayer.transform.Translate(Vector3.left * speed * Time.deltaTime);
 
-            // Check if the background layer is out of view and reset its position
-            if (backgroundLayer.transform.position.x < -15f) // Adjust this value as needed
+            if (backgroundLayer.transform.position.x < -15f)
             {
-                // Reset to the right side of the screen (assuming a width of 15 units)
                 backgroundLayer.transform.position = new Vector3(15f, backgroundLayer.transform.position.y, backgroundLayer.transform.position.z);
             }
         }
