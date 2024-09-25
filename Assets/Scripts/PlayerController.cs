@@ -4,6 +4,10 @@ using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject player;
+
+    SpriteRenderer spriteRenderer;
+    
     public float maxSpeed = 8f;
     public float acceleration = 5f;
     public float deceleration = 10f;
@@ -16,6 +20,9 @@ public class PlayerController : MonoBehaviour
     bool isGliding = false;
 
     float xVelocity;
+    bool isPlaying;
+
+    Vector2 startingPos = Vector2.zero;
 
     float screenHalfWidthInWorldUnits;
     float halfPlayerWidth;
@@ -24,18 +31,70 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+
         Application.targetFrameRate = 60;
+        spriteRenderer = player.GetComponent<SpriteRenderer>();
         rb2D = GetComponent<Rigidbody2D>();
+<<<<<<< Updated upstream
 
         halfPlayerWidth = transform.localScale.x / 2f;
         screenHalfWidthInWorldUnits = Camera.main.aspect * Camera.main.orthographicSize;
+=======
+        
+        startingPos = rb2D.transform.position;
+
+        OnGameOver();
+
+        UiManager sceneManager = FindObjectOfType<UiManager>();
+        if (sceneManager != null)
+        {
+            sceneManager.OnPlaying += OnPlaying;
+        }
+        else
+        {
+            Debug.LogWarning("SceneManager not found.");
+        }
+
+        ObstacleCollision obstacleCollision = FindObjectOfType<ObstacleCollision>();
+        if (obstacleCollision != null)
+        {
+            obstacleCollision.OnGameOver += OnGameOver;
+        }
+        else
+        {
+            Debug.LogWarning("ObstacleCollision component not found.");
+        }
+
+
+    }
+    
+    void OnPlaying()
+    {
+        isPlaying = true;
+        rb2D.position = startingPos;
+        spriteRenderer.enabled = true;
+        rb2D.gravityScale = 1f;
+    }
+
+    void OnGameOver()
+    {
+        isPlaying = false;
+        spriteRenderer.enabled = false;
+        rb2D.gravityScale = 0f;
+        rb2D.velocity = Vector2.zero;  
+        rb2D.angularVelocity = 0f;
+        transform.position = startingPos;
+>>>>>>> Stashed changes
     }
 
     void Update()
     {
-        Movement();
-        PlayerJump();
-        PlayerGlide();
+        if (isPlaying) 
+        {
+            Movement();
+            PlayerJump();
+            PlayerGlide();
+        }
     }
 
     void Movement()
