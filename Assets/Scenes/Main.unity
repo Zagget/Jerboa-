@@ -300,6 +300,7 @@ MonoBehaviour:
   glideSpeed: 2
   glideHorizontalMultiplier: 0.95
   jumpForce: 8
+  jump: {fileID: 0}
 --- !u!114 &148948328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,6 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHits: 0
   maxHits: 1
+  hurt: {fileID: 0}
 --- !u!1 &158089711
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,7 +353,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 4}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 120, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &158089713
 MonoBehaviour:
@@ -529,7 +531,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 46}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 120, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &236909256
 MonoBehaviour:
@@ -596,7 +598,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: e93356a9d3827e54e8177d4189dba56d, type: 3}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -604,7 +606,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 2.87
 --- !u!222 &236909258
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2014,7 +2016,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -37}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 120, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1864381299
 MonoBehaviour:
