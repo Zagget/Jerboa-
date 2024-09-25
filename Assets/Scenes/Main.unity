@@ -301,7 +301,7 @@ MonoBehaviour:
   glideSpeed: 2
   glideHorizontalMultiplier: 0.95
   jumpForce: 15
-  jump: {fileID: 148948333}
+  jump: {fileID: 148948332}
 --- !u!114 &148948328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,7 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHits: 0
   maxHits: 3
-  hurt: {fileID: 148948332}
+  hurt: {fileID: 148948333}
 --- !u!82 &148948332
 AudioSource:
   m_ObjectHideFlags: 0
@@ -328,7 +328,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e8d8415dd6d57774ea452a2cf7f3e294, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1804,7 +1804,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &989488277
 Transform:
   m_ObjectHideFlags: 0
@@ -1814,16 +1814,12 @@ Transform:
   m_GameObject: {fileID: 989488276}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-<<<<<<< Updated upstream
   m_LocalPosition: {x: 0.9781518, y: -0.77196693, z: -0.042645693}
-=======
-  m_LocalPosition: {x: -5.378179, y: -0.97142005, z: -3.9977088}
->>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 710791850}
-  m_Father: {fileID: 1998089752}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &990680258
 GameObject:
@@ -2733,7 +2729,6 @@ Transform:
   - {fileID: 1270332400}
   - {fileID: 927379268}
   - {fileID: 2132567977}
-  - {fileID: 989488277}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1998954864 stripped
@@ -2970,8 +2965,5 @@ SceneRoots:
   - {fileID: 241703964}
   - {fileID: 1998089752}
   - {fileID: 990680261}
-<<<<<<< Updated upstream
   - {fileID: 989488277}
-=======
->>>>>>> Stashed changes
   - {fileID: 468543517}
