@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RampBooster : MonoBehaviour
@@ -43,4 +45,6 @@ public class RampBooster : MonoBehaviour
             playerController.enabled = true;
         }
     }
+
 }
+

@@ -55,15 +55,6 @@ public class RampSpawner : MonoBehaviour
             }
 
         }
-        if (cloneAlive)
-        {
-            if (currentClonePos.x < startingPos.x + (rampWidth * 0.5f))
-            {
-                Destroy(cloneRamp);
-                cloneAlive = false;
-            }
-
-        }
     }
 
     void AddRamp()
@@ -97,7 +88,6 @@ public class RampSpawner : MonoBehaviour
             cloneAlive = true;
         }
     }
-
 
     void MoveRamp()
     {
