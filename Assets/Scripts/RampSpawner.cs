@@ -116,7 +116,7 @@ public class RampSpawner : MonoBehaviour
         }
     }
 
-    void GetStartingPos()
+    public Vector2 GetStartingPos()
     {
         Vector2 middleLeft = new Vector2(-width * 0.5f, 0f);
 
@@ -127,5 +127,7 @@ public class RampSpawner : MonoBehaviour
         adjustedY += rampWidth * 0.5f * Mathf.Sin(rotation * Mathf.Deg2Rad);
 
         startingPos = new Vector2(adjustedX, adjustedY);
+
+        return startingPos;
     }
 }
