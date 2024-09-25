@@ -37,11 +37,7 @@ public class RampSpawner : MonoBehaviour
 
     void RemoveRamp()
     {
-<<<<<<< Updated upstream
-        if (currentPos.x < -width * 0.5f - rampWidth)
-=======
         if (rampAlive)
->>>>>>> Stashed changes
         {
             if (currentPos.x < -width * 0.5f - rampWidth) 
             {
@@ -91,10 +87,7 @@ public class RampSpawner : MonoBehaviour
             ramp.tag = "Ground";
             rampAlive = true;
         }
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
         if (!cloneAlive)
         {
             cloneRamp = Instantiate(ramp);

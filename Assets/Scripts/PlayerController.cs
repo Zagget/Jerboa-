@@ -74,21 +74,14 @@ public class PlayerController : MonoBehaviour
     
     void OnPlaying()
     {
-<<<<<<< Updated upstream
         rb2D.position = startingPos;
-=======
+
         isPlaying = true;
         spriteRenderer.enabled = true;
->>>>>>> Stashed changes
         rb2D.gravityScale = 1f;
         gameUI.SetActive(true);
-<<<<<<< HEAD
         spriteRenderer.enabled = true;
         isPlaying = true;
-=======
-        playerScore.ResetScore();
-        playerScore.SetPlaying(true);
->>>>>>> 65477361e65b2a5927e8aa304863145c52b45957
     }
 
     void OnGameOver()
@@ -99,11 +92,6 @@ public class PlayerController : MonoBehaviour
         rb2D.position = startingPos;
         rb2D.velocity = Vector2.zero;  
         rb2D.angularVelocity = 0f;
-<<<<<<< HEAD
-=======
-        transform.position = startingPos;
-        playerScore.SetPlaying(false);
->>>>>>> 65477361e65b2a5927e8aa304863145c52b45957
     }
 
     void Update()

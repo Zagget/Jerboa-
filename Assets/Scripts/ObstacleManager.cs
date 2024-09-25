@@ -44,11 +44,6 @@ public class ObstacleManager : MonoBehaviour
 
     public void SpawnObstacle()
     {
-<<<<<<< Updated upstream
-=======
-        //currentObstacle = new GameObject();
->>>>>>> Stashed changes
-
         Vector2 rampPos = rampSpawner.GetStartingPos();
 
         Vector2 spawnPos = rampPos + new Vector2(10, 1);
