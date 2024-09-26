@@ -12,7 +12,9 @@ public class ObstacleCollision : MonoBehaviour
 
     public float currentHits = 0;
     public float maxHits;
-    public float safeTime = 2f; 
+    public float safeTime = 2f;
+
+    public AudioSource death;
 
     private bool isImmune = false;
 
@@ -51,8 +53,9 @@ public class ObstacleCollision : MonoBehaviour
                 {
                     hp1.gameObject.SetActive(false);
                     deadHp1.gameObject.SetActive(true);
+                    death.Play();
 
-                }
+            }
 
             GetComponent<SpriteRenderer>().color = Color.red;
 

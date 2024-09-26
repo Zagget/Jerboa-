@@ -107,6 +107,7 @@ public class PlayerController : MonoBehaviour
         transform.position = startingPos; // Reset player's position to starting
         isPlaying = false; // Update the game state to not playing
         playerScore.SetPlaying(false);
+       
     }
 
     void Update()
