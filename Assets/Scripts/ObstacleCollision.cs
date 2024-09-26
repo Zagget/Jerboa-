@@ -38,7 +38,7 @@ public class ObstacleCollision : MonoBehaviour
             hurt.Play();
             currentHits++;
 
-                if(currentHits == 1)
+                if (currentHits == 1)
                 {
                     hp3.gameObject.SetActive(false);
                     deadHp3.gameObject.SetActive(true);
@@ -69,10 +69,7 @@ public class ObstacleCollision : MonoBehaviour
         }
     }
 
-    public float AmountOfHits()
-    {
-        return currentHits;
-    }
+   
 
     public void OnCollisionExit2D(Collision2D collision)
     {

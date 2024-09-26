@@ -299,13 +299,14 @@ MonoBehaviour:
   animator: {fileID: 148948342}
   GlidingAnimationController: {fileID: -7745827286109461005, guid: c056f864149f6e54dbce2ad926657f3e, type: 3}
   BasicAnimationController: {fileID: 8167604086173158015, guid: 743cd606bb9255f4fb1664d2515d444e, type: 3}
-  maxSpeed: 8
-  acceleration: 5
+  maxSpeed: 50
+  acceleration: 10
   deceleration: 10
   rotationSpeed: 400
   glideSpeed: 2
   glideHorizontalMultiplier: 0.95
   jumpForce: 15
+  UprightSpeed: 2
   groundCheck: 0
   jump: {fileID: 148948333}
   flip: {fileID: 148948341}
