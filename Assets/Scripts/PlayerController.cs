@@ -233,10 +233,12 @@ public class PlayerController : MonoBehaviour
                 didFlip = false;
             }
 
-            if (Mathf.Abs(transform.rotation.eulerAngles.z) > 150 && Mathf.Abs(transform.rotation.eulerAngles.z) < 210 && didFlip)
+            else if(Mathf.Abs(transform.rotation.eulerAngles.z) > 180 && didFlip)
             {
-                OnGameOver();  
-            }
+               // OnGameOver();
+
+       
+        }
         }   
 
         
