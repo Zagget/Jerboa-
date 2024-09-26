@@ -164,12 +164,11 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKey(KeyCode.Q) && groundCheck == false)
         {
             transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime, Space.Self);
-            flip.Play();
         }
         if (Input.GetKey(KeyCode.E) && groundCheck == false)
         {
             transform.Rotate(-Vector3.forward * rotationSpeed * Time.deltaTime, Space.Self);
-            flip.Play();
+
         }
     }
 
@@ -231,7 +230,7 @@ public class PlayerController : MonoBehaviour
                // OnGameOver();
 
        
-        }
+            }
         }   
 
         

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ObstacleManager : MonoBehaviour
 {
+
     public GameObject Obstacle1;
     public GameObject Obstacle2;
     public GameObject Obstacle3;
@@ -21,6 +22,7 @@ public class ObstacleManager : MonoBehaviour
     RampSpawner rampSpawner;
 
     bool hasSpawned = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +34,6 @@ public class ObstacleManager : MonoBehaviour
         obstacleArray = new GameObject[] { Obstacle1, Obstacle2, Obstacle3 };
 
         Invoke(nameof(SpawnObstacle), 3);
-
     }
 
     // Update is called once per frame
@@ -49,9 +50,9 @@ public class ObstacleManager : MonoBehaviour
         Vector2 spawnPos = rampPos + new Vector2(10, 1);
 
         currentObstacle = Instantiate(obstacleArray[Random.Range(0, obstacleArray.Length)], spawnPos, transform.rotation);
+
         rb2D = currentObstacle.GetComponent<Rigidbody2D>();
         hasSpawned = true;
-
     }
 
     public void MoveObstacle()
@@ -61,12 +62,9 @@ public class ObstacleManager : MonoBehaviour
             xVelocity += -speed * Time.deltaTime;
             xVelocity = Mathf.Clamp(xVelocity, -maxSpeed, 0);
             rb2D.velocity = new Vector2(xVelocity, rb2D.velocity.y);
-
         }
-
-
-
     }
+
     public Vector2 GetCurrentObstaclePos()
     {
         if(currentObstacle != null)
