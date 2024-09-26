@@ -22,14 +22,15 @@ public class PlayerController : MonoBehaviour
     
     bool groundCheck = false;
     bool isGliding = false;
-
-    float xVelocity;
+    bool didFlip = false;
     bool isPlaying;
 
     Vector2 startingPos = Vector2.zero;
 
+    float xVelocity;
     float screenHalfWidthInWorldUnits;
     float halfPlayerWidth;
+    float lastRot = 0;
 
     public AudioSource jump;
 
@@ -87,6 +88,7 @@ public class PlayerController : MonoBehaviour
         isPlaying = true;
         playerScore.ResetScore();
         playerScore.SetPlaying(true);
+        didFlip = false;
     }
 
     void OnGameOver()
@@ -108,6 +110,7 @@ public class PlayerController : MonoBehaviour
             PlayerJump();
             PlayerGlide();
             Rotate();
+            CheckForFlip();
         }
       
     }
@@ -156,6 +159,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void CheckForFlip()
+    {
+        float currRot = transform.eulerAngles.z;
+        if(Mathf.Abs(currRot -  lastRot) > 180)
+        {
+                didFlip = true;
+        }
+        lastRot = currRot;
+    }
+
     void PlayerJump()
     {
         if (Input.GetButtonDown("Jump") && groundCheck)
@@ -197,6 +210,12 @@ public class PlayerController : MonoBehaviour
         {
             groundCheck = true;
             isGliding = false;
+
+            if (Mathf.Abs(transform.rotation.eulerAngles.z) < 15f && didFlip)  
+            {
+                playerScore.AddScore(10);  
+                didFlip = false; 
+            }
         }
     }
 

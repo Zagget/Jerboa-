@@ -30,6 +30,13 @@ public class PlayerScore : MonoBehaviour
         return;
     }
 
+    public void AddScore(int points)
+    {
+        if (!isPlaying) return;
+        score += points;
+        scoreText.text = $"Score: {score}";
+    }
+
     public void ResetScore()
     {
         score = 0;
