@@ -53,7 +53,6 @@ public class ObstacleCollision : MonoBehaviour
                 {
                     hp1.gameObject.SetActive(false);
                     deadHp1.gameObject.SetActive(true);
-                    death.Play();
 
                 }
 

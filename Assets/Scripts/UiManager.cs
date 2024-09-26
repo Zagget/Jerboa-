@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class UiManager : MonoBehaviour
 {
     public GameObject menuOverlay;
+    public GameObject creditsOverlay;
     public Button play;
     public Button credits;
     public Button exit;
@@ -13,6 +14,7 @@ public class UiManager : MonoBehaviour
 
     void Start()
     {
+        creditsOverlay.SetActive(false);
         menuOverlay.SetActive(true);
         ObstacleCollision obstacleCollision = FindObjectOfType<ObstacleCollision>();
         if (obstacleCollision != null)
@@ -31,7 +33,10 @@ public class UiManager : MonoBehaviour
 
     private void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            creditsSettings();
+        }
     }
 
     void ClickButton(string button)
@@ -47,6 +52,9 @@ public class UiManager : MonoBehaviour
                 break;
 
             case "credits":
+                creditsOverlay.SetActive(true);
+                menuOverlay.SetActive(false);
+
                 break;
 
             case "exit":
@@ -54,6 +62,12 @@ public class UiManager : MonoBehaviour
                 //Application.Quit();
                 break;
         }
+    }
+
+    void creditsSettings()
+    {
+        creditsOverlay.SetActive(false);
+        menuOverlay.SetActive(true);
     }
 
     void OnGameOver()
