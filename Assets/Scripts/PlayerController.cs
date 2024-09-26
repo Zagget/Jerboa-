@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer spriteRenderer;
     public Sprite playerGlidingSprite;
     public Animator animator;
+    public RuntimeAnimatorController GlidingAnimationController;
+    public RuntimeAnimatorController BasicAnimationController;
 
 
 
@@ -161,12 +163,12 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.Q) && groundCheck == false)
         {
-            transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
+            transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime, Space.Self);
             flip.Play();
         }
         if (Input.GetKey(KeyCode.E) && groundCheck == false)
         {
-            transform.Rotate(-Vector3.forward * rotationSpeed * Time.deltaTime);
+            transform.Rotate(-Vector3.forward * rotationSpeed * Time.deltaTime, Space.Self);
             flip.Play();
         }
     }
@@ -202,19 +204,13 @@ public class PlayerController : MonoBehaviour
      
             isGliding = true;
             rb2D.velocity = new Vector2(rb2D.velocity.x, -glideSpeed);
-            ChangeSprite();
+            animator.runtimeAnimatorController = GlidingAnimationController;
         }
         else
         {
             isGliding = false;
-            animator.enabled = true;
+            animator.runtimeAnimatorController = BasicAnimationController;
         }
-    }
-
-    public void ChangeSprite()
-    {
-        spriteRenderer.sprite = playerGlidingSprite;
-        animator.enabled = false;
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
@@ -229,9 +225,17 @@ public class PlayerController : MonoBehaviour
                 playerScore.AddScore(10);  
                 didFlip = false; 
             }
-        }
-    }
 
+            else if(Mathf.Abs(transform.rotation.eulerAngles.z) > 180 && didFlip)
+            {
+               // OnGameOver();
+
+       
+        }
+        }   
+
+        
+    }
     public void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
