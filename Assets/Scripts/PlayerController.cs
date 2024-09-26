@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer spriteRenderer;
     public Sprite playerGlidingSprite;
     public Animator animator;
+    public RuntimeAnimatorController GlidingAnimationController;
+    public RuntimeAnimatorController BasicAnimationController;
 
 
 
@@ -202,19 +204,13 @@ public class PlayerController : MonoBehaviour
      
             isGliding = true;
             rb2D.velocity = new Vector2(rb2D.velocity.x, -glideSpeed);
-            ChangeSprite();
+            animator.runtimeAnimatorController = GlidingAnimationController;
         }
         else
         {
             isGliding = false;
-            animator.enabled = true;
+            animator.runtimeAnimatorController = BasicAnimationController;
         }
-    }
-
-    public void ChangeSprite()
-    {
-        spriteRenderer.sprite = playerGlidingSprite;
-        animator.enabled = false;
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
