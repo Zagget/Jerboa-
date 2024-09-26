@@ -303,7 +303,7 @@ MonoBehaviour:
   glideSpeed: 2
   glideHorizontalMultiplier: 0.95
   jumpForce: 15
-  jump: {fileID: 148948332}
+  jump: {fileID: 148948333}
 --- !u!114 &148948328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,7 +319,7 @@ MonoBehaviour:
   currentHits: 0
   maxHits: 3
   safeTime: 2
-  hurt: {fileID: 148948333}
+  hurt: {fileID: 148948332}
 --- !u!82 &148948332
 AudioSource:
   m_ObjectHideFlags: 0
@@ -331,7 +331,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e8d8415dd6d57774ea452a2cf7f3e294, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
