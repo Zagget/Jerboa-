@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 53a1341aa9f0c4645ab449c57490eec5
+guid: f92155e88e4bd5b4a81efb55edfdd861
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -35,7 +35,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 24
+    spritePixelsToUnits: 100
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638629547895939337
+  platformSettingsDirtyTick: 0
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -121,18 +121,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: jerboa_separate_tail
+  - name: fliptastic
     originalName: 
-    pivot: {x: 0.515625, y: -0.6666667}
+    pivot: {x: 0.5, y: -0.047619052}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 64
-      height: 33
-    spriteID: 29d90aca95d308b489de5efe92b16cba
+      width: 70
+      height: 42
+    spriteID: 78aa8e04282099c4b9374f5249ff65ed
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,61 +144,25 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 931165924
-    name: jerboa_separate_tail
+    guid: -385168413
+    name: fliptastic
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: jerboa_separate_tail
+    - name: fliptastic
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 3
-        y: 22
-        width: 64
-        height: 33
-      spriteId: 29d90aca95d308b489de5efe92b16cba
+        x: 1
+        y: 2
+        width: 70
+        height: 42
+      spriteId: 78aa8e04282099c4b9374f5249ff65ed
     linkedCells: []
     parentIndex: -1
-  platformSettings:
-  - name: DefaultTexturePlatform
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Standalone
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: WebGL
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
+  platformSettings: []
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 72, y: 72}
+  canvasSize: {x: 72, y: 48}
