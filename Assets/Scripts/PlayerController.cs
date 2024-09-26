@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
 
         Application.targetFrameRate = 60;
         spriteRenderer = player.GetComponent<SpriteRenderer>();
+        animator = player.GetComponent<Animator>();
 
         rb2D = GetComponent<Rigidbody2D>();
 
