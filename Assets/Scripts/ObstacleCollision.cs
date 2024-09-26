@@ -6,9 +6,16 @@ public class ObstacleCollision : MonoBehaviour
     public Image hp1;
     public Image hp2;
     public Image hp3;
+
     public Image deadHp1;
     public Image deadHp2;
     public Image deadHp3;
+
+    public Animator hp1Animator;
+    public Animator hp2Animator;
+    public Animator hp3Animator;
+
+    public RuntimeAnimatorController heartAnimationController;
 
     public float currentHits = 0;
     public float maxHits;
@@ -24,9 +31,10 @@ public class ObstacleCollision : MonoBehaviour
 
     public void ResetHP()
     {
-        hp3.gameObject.SetActive(true);
-        hp2.gameObject.SetActive(true);
         hp1.gameObject.SetActive(true);
+        hp2.gameObject.SetActive(true);
+        hp3.gameObject.SetActive(true);
+
         deadHp3.gameObject.SetActive(false);
         deadHp2.gameObject.SetActive(false);
         deadHp1.gameObject.SetActive(false);
@@ -40,18 +48,18 @@ public class ObstacleCollision : MonoBehaviour
 
                 if (currentHits == 1)
                 {
-                    hp3.gameObject.SetActive(false);
+                    hp3Animator.runtimeAnimatorController = heartAnimationController;
                     deadHp3.gameObject.SetActive(true);
                 }
                 else if(currentHits == 2)
                 {
-                    hp2.gameObject.SetActive(false);
+                    hp2Animator.runtimeAnimatorController = heartAnimationController;
                     deadHp2.gameObject.SetActive(true);
 
                 }
                 else if (currentHits == 3)
                 {
-                    hp1.gameObject.SetActive(false);
+                    hp1Animator.runtimeAnimatorController = heartAnimationController;
                     deadHp1.gameObject.SetActive(true);
 
                 }
