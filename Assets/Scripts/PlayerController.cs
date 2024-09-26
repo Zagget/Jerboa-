@@ -225,10 +225,12 @@ public class PlayerController : MonoBehaviour
                 playerScore.AddScore(10);  
                 didFlip = false; 
             }
+
             else if(Mathf.Abs(transform.rotation.eulerAngles.z) > 180 && didFlip)
             {
                // OnGameOver();
-            }
+
+       
         }
     }
 
