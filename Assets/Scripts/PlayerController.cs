@@ -33,8 +33,10 @@ public class PlayerController : MonoBehaviour
     float lastRot = 0;
 
     public AudioSource jump;
+    public AudioSource flip;
 
     PlayerScore playerScore;
+    ObstacleCollision obstacleCollision1;
 
     Rigidbody2D rb2D;
 
@@ -46,6 +48,7 @@ public class PlayerController : MonoBehaviour
 
         rb2D = GetComponent<Rigidbody2D>();
 
+        obstacleCollision1 = FindObjectOfType<ObstacleCollision>();
         playerScore = FindObjectOfType<PlayerScore>();
 
         halfPlayerWidth = transform.localScale.x / 2f;
@@ -89,6 +92,8 @@ public class PlayerController : MonoBehaviour
         playerScore.ResetScore();
         playerScore.SetPlaying(true);
         didFlip = false;
+        obstacleCollision1.ResetHP();
+
     }
 
     void OnGameOver()
@@ -149,13 +154,15 @@ public class PlayerController : MonoBehaviour
 
     void Rotate()
     {
-        if(Input.GetKey(KeyCode.Q))
+        if(Input.GetKey(KeyCode.Q) && groundCheck == false)
         {
-            transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);    
+            transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
+            flip.Play();
         }
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.E) && groundCheck == false)
         {
             transform.Rotate(-Vector3.forward * rotationSpeed * Time.deltaTime);
+            flip.Play();
         }
     }
 
@@ -211,7 +218,7 @@ public class PlayerController : MonoBehaviour
             groundCheck = true;
             isGliding = false;
 
-            if (Mathf.Abs(transform.rotation.eulerAngles.z) < 15f && didFlip)  
+            if (Mathf.Abs(transform.rotation.eulerAngles.z) < 25f && didFlip)  
             {
                 playerScore.AddScore(10);  
                 didFlip = false; 
