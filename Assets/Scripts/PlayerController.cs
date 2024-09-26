@@ -29,15 +29,17 @@ public class PlayerController : MonoBehaviour
 
     public AudioSource jump;
 
+    PlayerScore playerScore;
+
     Rigidbody2D rb2D;
 
     void Start()
     {
-        //playerScore = FindAnyObjectByType<PlayerScore>();
         Application.targetFrameRate = 60;
         spriteRenderer = player.GetComponent<SpriteRenderer>();
         rb2D = GetComponent<Rigidbody2D>();
 
+        playerScore = FindObjectOfType<PlayerScore>();
 
         halfPlayerWidth = transform.localScale.x / 2f;
         screenHalfWidthInWorldUnits = Camera.main.aspect * Camera.main.orthographicSize;
@@ -72,12 +74,11 @@ public class PlayerController : MonoBehaviour
     
     void OnPlaying()
     {
-        isPlaying = true;
         rb2D.position = startingPos;
-        spriteRenderer.enabled = true;
         rb2D.gravityScale = 1f;
         gameUI.SetActive(true);
-        
+        spriteRenderer.enabled = true;
+        isPlaying = true;
     }
 
     void OnGameOver()

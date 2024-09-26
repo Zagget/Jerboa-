@@ -31,20 +31,29 @@ public class RampSpawner : MonoBehaviour
     {
         RemoveRamp();
         AddRamp();
-        
-        RemoveClone();
-        AddClone();
 
         MoveRamp();
-        MoveClone();
     }
 
     void RemoveRamp()
     {
-        if (currentPos.x < -width * 0.5f - rampWidth) 
+        if (rampAlive)
         {
-            Destroy(ramp);
-            rampAlive = false;
+            if (currentPos.x < -width * 0.5f - rampWidth) 
+            {
+                Destroy(ramp);
+                rampAlive = false;
+            }
+        }
+
+        if (cloneAlive)
+        {
+            if (currentClonePos.x < startingPos.x + (rampWidth * 0.5f))
+            {
+                Destroy(cloneRamp);
+                cloneAlive = false;
+            }
+
         }
     }
 
@@ -69,19 +78,14 @@ public class RampSpawner : MonoBehaviour
             ramp.tag = "Ground";
             rampAlive = true;
         }
-    }
 
-
-    void RemoveClone()
-    {
-        if (cloneAlive)
+        if (!cloneAlive)
         {
-            if (currentClonePos.x < startingPos.x + (rampWidth * 0.5f))
-            {
-                Destroy(cloneRamp);
-                cloneAlive = false;
-            }
+            cloneRamp = Instantiate(ramp);
 
+            cloneRamp.transform.Translate(new Vector3(rampWidth, 0, 0), Space.Self);
+
+            cloneAlive = true;
         }
     }
 
@@ -90,29 +94,12 @@ public class RampSpawner : MonoBehaviour
         if (rampAlive)
         {
             ramp.transform.Translate(new Vector3(-rampSpeed * Time.deltaTime, 0), Space.Self);
-            currentPos = ramp.transform.position; 
+            currentPos = ramp.transform.position;
         }
-    }
-
-    void MoveClone()
-    {
         if (cloneAlive)
         {
             cloneRamp.transform.Translate(new Vector3(-rampSpeed * Time.deltaTime, 0), Space.Self);
             currentClonePos = cloneRamp.transform.position;
-        }
-    }
-
-
-    void AddClone()
-    {
-        if (!cloneAlive)
-        {
-            cloneRamp = Instantiate(ramp);
-
-            cloneRamp.transform.Translate(new Vector3(rampWidth, 0, 0), Space.Self);
-
-            cloneAlive = true;
         }
     }
 
