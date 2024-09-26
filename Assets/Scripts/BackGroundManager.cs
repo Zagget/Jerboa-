@@ -12,6 +12,8 @@ public class BackGroundManager : MonoBehaviour
         [HideInInspector] public Vector3 startingPos;
     }
 
+    float spawnOffset = 1.2f;
+
     public List<BackgroundLayer> backgroundLayers;
     public GameObject parentGameObject;
 
@@ -35,7 +37,7 @@ public class BackGroundManager : MonoBehaviour
 
                 //clone.transform.localPosition = newPosition;
 
-                clone.transform.Translate(new Vector3(layer.objectWidth, 0, 0), Space.Self);
+                clone.transform.Translate(new Vector3(layer.objectWidth - spawnOffset, 0, 0), Space.Self);
 
                 clonedLayers.Add(layer, clone);
             }
@@ -56,13 +58,13 @@ public class BackGroundManager : MonoBehaviour
 
             if (layer.layer.transform.position.x < layer.startingPos.x - layer.objectWidth)
             {
-                layer.layer.transform.Translate(new Vector3(layer.objectWidth * 2f, 0, 0), Space.Self);
+                layer.layer.transform.Translate(new Vector3((layer.objectWidth - spawnOffset) * 2f, 0, 0), Space.Self);
             }
 
             if (clonedLayers[layer].transform.position.x < layer.startingPos.x - layer.objectWidth)
             {
 
-                clonedLayers[layer].transform.Translate(new Vector3(layer.objectWidth * 2f, 0, 0), Space.Self);
+                clonedLayers[layer].transform.Translate(new Vector3((layer.objectWidth - spawnOffset) * 2f, 0, 0), Space.Self);
             }
         }
     }
