@@ -1,7 +1,15 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 public class ObstacleCollision : MonoBehaviour
 {
+    public Image hp1;
+    public Image hp2;
+    public Image hp3;
+    public Image deadHp1;
+    public Image deadHp2;
+    public Image deadHp3;
+
     public float currentHits = 0;
     public float maxHits;
     public float safeTime = 2f; 
@@ -12,12 +20,40 @@ public class ObstacleCollision : MonoBehaviour
 
     public AudioSource hurt;
 
+    public void ResetHP()
+    {
+        hp3.gameObject.SetActive(true);
+        hp2.gameObject.SetActive(true);
+        hp1.gameObject.SetActive(true);
+        deadHp3.gameObject.SetActive(false);
+        deadHp2.gameObject.SetActive(false);
+        deadHp1.gameObject.SetActive(false);
+    }
     public void OnCollisionEnter2D(Collision2D collider)
     {
         if (!isImmune && collider.gameObject.CompareTag("Obstacle"))
         {
             hurt.Play();
             currentHits++;
+
+                if(currentHits == 1)
+                {
+                    hp3.gameObject.SetActive(false);
+                    deadHp3.gameObject.SetActive(true);
+                }
+                else if(currentHits == 2)
+                {
+                    hp2.gameObject.SetActive(false);
+                    deadHp2.gameObject.SetActive(true);
+
+                }
+            else if (currentHits == 3)
+                {
+                    hp1.gameObject.SetActive(false);
+                    deadHp1.gameObject.SetActive(true);
+
+                }
+
             GetComponent<SpriteRenderer>().color = Color.red;
 
             StartCoroutine(EnableImmunity());

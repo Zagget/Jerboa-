@@ -14,8 +14,7 @@ public class PlayerScore : MonoBehaviour
 
     void Start()
     {
-        highScore = PlayerPrefs.GetInt("Highscore", 0);
-        highScoreText.text = $"Highscore: {highScore}";
+        
 
         obstacleManager = FindObjectOfType<ObstacleManager>();
         InvokeRepeating(nameof(Score), 0, 1);
@@ -25,15 +24,22 @@ public class PlayerScore : MonoBehaviour
     {
         if (!isPlaying) return;
         score++;
-        scoreText.text = $"Score: {score}";      
+        scoreText.text = $"{score}";      
             
         return;
+    }
+
+    public void AddScore(int points)
+    {
+        if (!isPlaying) return;
+        score += points;
+        scoreText.text = $"{score}";
     }
 
     public void ResetScore()
     {
         score = 0;
-        scoreText.text = $"Score: {score}"; 
+        scoreText.text = $"{score}";
 
     }
 
@@ -47,10 +53,9 @@ public class PlayerScore : MonoBehaviour
             {
                 highScore = score;
 
-                PlayerPrefs.SetInt("Highscore", highScore);
-                PlayerPrefs.Save();
 
-                highScoreText.text = $"Highscore: {highScore}";
+
+                highScoreText.text = $"{highScore}";
             }
         }
     }
