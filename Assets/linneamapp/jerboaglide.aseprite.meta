@@ -141,6 +141,66 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: jerboaglide_Frame_1
+    originalName: 
+    pivot: {x: 0.48387095, y: -0.49999997}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 57
+      width: 62
+      height: 46
+    spriteID: 09999711743dee54f806839767d8e112
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 57}
+  - name: jerboaglide_Frame_2
+    originalName: 
+    pivot: {x: 0.48387095, y: -0.49999997}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 111
+      width: 62
+      height: 46
+    spriteID: 364801f37a70d80458077241ca8d5421
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 111}
+  - name: jerboaglide_Frame_3
+    originalName: 
+    pivot: {x: 0.49206352, y: -0.51111114}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 165
+      width: 63
+      height: 45
+    spriteID: 60c31aa8571a1094ba6e4f7de37ac6f7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 165}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -150,7 +210,7 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: jerboaglide
+    - name: jerboaglide_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -159,6 +219,33 @@ ScriptedImporter:
         width: 64
         height: 45
       spriteId: eefb594e02c836043ac8055b7998afc5
+    - name: jerboaglide_Frame_1
+      frameIndex: 1
+      additiveSortOrder: 0
+      cellRect:
+        x: 18
+        y: 23
+        width: 62
+        height: 46
+      spriteId: 09999711743dee54f806839767d8e112
+    - name: jerboaglide_Frame_2
+      frameIndex: 2
+      additiveSortOrder: 0
+      cellRect:
+        x: 18
+        y: 23
+        width: 62
+        height: 46
+      spriteId: 364801f37a70d80458077241ca8d5421
+    - name: jerboaglide_Frame_3
+      frameIndex: 3
+      additiveSortOrder: 0
+      cellRect:
+        x: 17
+        y: 23
+        width: 63
+        height: 45
+      spriteId: 60c31aa8571a1094ba6e4f7de37ac6f7
     linkedCells: []
     parentIndex: -1
   platformSettings:
