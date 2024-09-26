@@ -7,7 +7,8 @@ public class PlayerController : MonoBehaviour
 
 
     SpriteRenderer spriteRenderer;
-    public Sprite playerGlidingSprite; 
+    public Sprite playerGlidingSprite;
+    public Animator animator;
 
 
 
@@ -202,13 +203,14 @@ public class PlayerController : MonoBehaviour
         else
         {
             isGliding = false;
-  
+            animator.enabled = true;
         }
     }
 
     public void ChangeSprite()
     {
         spriteRenderer.sprite = playerGlidingSprite;
+        animator.enabled = false;
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
