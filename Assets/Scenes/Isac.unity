@@ -296,7 +296,9 @@ MonoBehaviour:
   gameUI: {fileID: 763241541}
   player: {fileID: 148948318}
   playerGlidingSprite: {fileID: 1489021463773987052, guid: c056f864149f6e54dbce2ad926657f3e, type: 3}
-  animator: {fileID: 0}
+  animator: {fileID: 148948342}
+  GlidingAnimationController: {fileID: -7745827286109461005, guid: c056f864149f6e54dbce2ad926657f3e, type: 3}
+  BasicAnimationController: {fileID: 8167604086173158015, guid: 743cd606bb9255f4fb1664d2515d444e, type: 3}
   maxSpeed: 8
   acceleration: 5
   deceleration: 10
@@ -637,6 +639,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &148948342 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1160356261127867848, guid: 743cd606bb9255f4fb1664d2515d444e, type: 3}
+  m_PrefabInstance: {fileID: 1849595682}
+  m_PrefabAsset: {fileID: 0}
 --- !u!82 &148948344
 AudioSource:
   m_ObjectHideFlags: 0

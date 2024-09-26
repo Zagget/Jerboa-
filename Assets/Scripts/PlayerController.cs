@@ -163,12 +163,12 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.Q) && groundCheck == false)
         {
-            transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
+            transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime, Space.Self);
             flip.Play();
         }
         if (Input.GetKey(KeyCode.E) && groundCheck == false)
         {
-            transform.Rotate(-Vector3.forward * rotationSpeed * Time.deltaTime);
+            transform.Rotate(-Vector3.forward * rotationSpeed * Time.deltaTime, Space.Self);
             flip.Play();
         }
     }
@@ -224,6 +224,10 @@ public class PlayerController : MonoBehaviour
             {
                 playerScore.AddScore(10);  
                 didFlip = false; 
+            }
+            else if(Mathf.Abs(transform.rotation.eulerAngles.z) > 180 && didFlip)
+            {
+               // OnGameOver();
             }
         }
     }
