@@ -14,8 +14,6 @@ public class PlayerScore : MonoBehaviour
 
     void Start()
     {
-        
-
         obstacleManager = FindObjectOfType<ObstacleManager>();
         InvokeRepeating(nameof(Score), 0, 1);
     }

@@ -38,7 +38,7 @@ public class ObstacleCollision : MonoBehaviour
             hurt.Play();
             currentHits++;
 
-                if(currentHits == 1)
+                if (currentHits == 1)
                 {
                     hp3.gameObject.SetActive(false);
                     deadHp3.gameObject.SetActive(true);
@@ -49,13 +49,13 @@ public class ObstacleCollision : MonoBehaviour
                     deadHp2.gameObject.SetActive(true);
 
                 }
-            else if (currentHits == 3)
+                else if (currentHits == 3)
                 {
                     hp1.gameObject.SetActive(false);
                     deadHp1.gameObject.SetActive(true);
                     death.Play();
 
-            }
+                }
 
             GetComponent<SpriteRenderer>().color = Color.red;
 
@@ -68,6 +68,8 @@ public class ObstacleCollision : MonoBehaviour
             }
         }
     }
+
+   
 
     public void OnCollisionExit2D(Collision2D collision)
     {
