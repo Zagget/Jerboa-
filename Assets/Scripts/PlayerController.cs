@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public float glideHorizontalMultiplier = 0.95f;
     public float jumpForce = 5;
     
-    bool groundCheck = false;
+    public bool groundCheck = false;
     bool isGliding = false;
     bool didFlip = false;
     bool isPlaying;
