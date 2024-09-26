@@ -305,7 +305,7 @@ MonoBehaviour:
   glideHorizontalMultiplier: 0.95
   jumpForce: 15
   groundCheck: 0
-  jump: {fileID: 148948332}
+  jump: {fileID: 148948333}
   flip: {fileID: 148948341}
 --- !u!114 &148948328
 MonoBehaviour:
@@ -329,7 +329,7 @@ MonoBehaviour:
   maxHits: 3
   safeTime: 2
   death: {fileID: 148948344}
-  hurt: {fileID: 148948333}
+  hurt: {fileID: 148948332}
 --- !u!82 &148948332
 AudioSource:
   m_ObjectHideFlags: 0
