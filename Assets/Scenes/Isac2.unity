@@ -296,6 +296,7 @@ MonoBehaviour:
   gameUI: {fileID: 989488276}
   player: {fileID: 148948318}
   playerGlidingSprite: {fileID: 1489021463773987052, guid: c056f864149f6e54dbce2ad926657f3e, type: 3}
+  animator: {fileID: 148948342}
   maxSpeed: 8
   acceleration: 5
   deceleration: 10
@@ -303,6 +304,7 @@ MonoBehaviour:
   glideSpeed: 2
   glideHorizontalMultiplier: 0.95
   jumpForce: 15
+  groundCheck: 0
   jump: {fileID: 148948333}
   flip: {fileID: 148948341}
 --- !u!114 &148948328
@@ -629,6 +631,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &148948342 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1160356261127867848, guid: 743cd606bb9255f4fb1664d2515d444e, type: 3}
+  m_PrefabInstance: {fileID: 1849595682}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &158089711
 GameObject:
   m_ObjectHideFlags: 0
@@ -3920,6 +3927,7 @@ MonoBehaviour:
     speed: 4
     objectWidth: 0
     startingPos: {x: 0, y: 0, z: 0}
+  parentGameObject: {fileID: 0}
 --- !u!1001 &1822995803408121702
 PrefabInstance:
   m_ObjectHideFlags: 0
