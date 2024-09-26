@@ -86,7 +86,9 @@ public class PlayerController : MonoBehaviour
     
     void OnPlaying()
     {
-        rb2D.position = startingPos; // Set the player's position to starting position
+        transform.position = startingPos; // Set the player's position to starting position
+        rb2D.gravityScale = 0f;
+        rb2D.angularVelocity = 0f;
         rb2D.gravityScale = 1f; // Enable gravity for the player
         gameUI.SetActive(true); // Activate the game UI
         spriteRenderer.enabled = true; // Enable player sprite
@@ -100,9 +102,9 @@ public class PlayerController : MonoBehaviour
 
     void OnGameOver()
     {
-        rb2D.velocity = Vector2.zero; // Stop all movement
         rb2D.gravityScale = 0f; // Disable gravity
         rb2D.angularVelocity = 0f; // Stop any rotation
+        rb2D.velocity = Vector2.zero; // Stop all movement
         spriteRenderer.enabled = false; // Hide player sprite
         transform.position = startingPos; // Reset player's position to starting
         isPlaying = false; // Update the game state to not playing
