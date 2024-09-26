@@ -232,8 +232,10 @@ public class PlayerController : MonoBehaviour
 
        
         }
-    }
+        }   
 
+        
+    }
     public void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
