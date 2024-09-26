@@ -5,13 +5,17 @@ public class PlayerController : MonoBehaviour
     public GameObject gameUI;
     public GameObject player;
 
+
     SpriteRenderer spriteRenderer;
+    public Sprite playerGlidingSprite; 
+
 
 
     public float maxSpeed = 8f;
     public float acceleration = 5f;
     public float deceleration = 10f;
-    
+
+    public float rotationSpeed;
     public float glideSpeed = 2f;
     public float glideHorizontalMultiplier = 0.95f;
     public float jumpForce = 5;
@@ -35,8 +39,10 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+
         Application.targetFrameRate = 60;
         spriteRenderer = player.GetComponent<SpriteRenderer>();
+
         rb2D = GetComponent<Rigidbody2D>();
 
         playerScore = FindObjectOfType<PlayerScore>();
@@ -79,6 +85,8 @@ public class PlayerController : MonoBehaviour
         gameUI.SetActive(true);
         spriteRenderer.enabled = true;
         isPlaying = true;
+        playerScore.ResetScore();
+        playerScore.SetPlaying(true);
     }
 
     void OnGameOver()
@@ -89,6 +97,7 @@ public class PlayerController : MonoBehaviour
         rb2D.velocity = Vector2.zero;  
         rb2D.angularVelocity = 0f;
         transform.position = startingPos;
+        playerScore.SetPlaying(false);
     }
 
     void Update()
@@ -98,7 +107,9 @@ public class PlayerController : MonoBehaviour
             Movement();
             PlayerJump();
             PlayerGlide();
+            Rotate();
         }
+      
     }
 
     void Movement()
@@ -133,6 +144,18 @@ public class PlayerController : MonoBehaviour
         transform.position = playerPos;
     }
 
+    void Rotate()
+    {
+        if(Input.GetKey(KeyCode.Q))
+        {
+            transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);    
+        }
+        if (Input.GetKey(KeyCode.E))
+        {
+            transform.Rotate(-Vector3.forward * rotationSpeed * Time.deltaTime);
+        }
+    }
+
     void PlayerJump()
     {
         if (Input.GetButtonDown("Jump") && groundCheck)
@@ -151,13 +174,21 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButton("Jump") && !groundCheck && rb2D.velocity.y < 0)
         {
+     
             isGliding = true;
             rb2D.velocity = new Vector2(rb2D.velocity.x, -glideSpeed);
+            ChangeSprite();
         }
         else
         {
             isGliding = false;
+  
         }
+    }
+
+    public void ChangeSprite()
+    {
+        spriteRenderer.sprite = playerGlidingSprite;
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
