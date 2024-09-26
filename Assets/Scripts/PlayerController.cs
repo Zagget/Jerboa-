@@ -5,40 +5,52 @@ public class PlayerController : MonoBehaviour
     public GameObject gameUI;
     public GameObject player;
 
+
     SpriteRenderer spriteRenderer;
+    public Sprite playerGlidingSprite;
+    public Animator animator;
+
 
 
     public float maxSpeed = 8f;
     public float acceleration = 5f;
     public float deceleration = 10f;
-    
+
+    public float rotationSpeed;
     public float glideSpeed = 2f;
     public float glideHorizontalMultiplier = 0.95f;
     public float jumpForce = 5;
     
-    bool groundCheck = false;
+    public bool groundCheck = false;
     bool isGliding = false;
-
-    float xVelocity;
+    bool didFlip = false;
     bool isPlaying;
 
     Vector2 startingPos = Vector2.zero;
 
+    float xVelocity;
     float screenHalfWidthInWorldUnits;
     float halfPlayerWidth;
+    float lastRot = 0;
 
     public AudioSource jump;
+    public AudioSource flip;
 
     PlayerScore playerScore;
+    ObstacleCollision obstacleCollision1;
 
     Rigidbody2D rb2D;
 
     void Start()
     {
+
         Application.targetFrameRate = 60;
         spriteRenderer = player.GetComponent<SpriteRenderer>();
+        animator = player.GetComponent<Animator>();
+
         rb2D = GetComponent<Rigidbody2D>();
 
+        obstacleCollision1 = FindObjectOfType<ObstacleCollision>();
         playerScore = FindObjectOfType<PlayerScore>();
 
         halfPlayerWidth = transform.localScale.x / 2f;
@@ -79,6 +91,11 @@ public class PlayerController : MonoBehaviour
         gameUI.SetActive(true);
         spriteRenderer.enabled = true;
         isPlaying = true;
+        playerScore.ResetScore();
+        playerScore.SetPlaying(true);
+        didFlip = false;
+        obstacleCollision1.ResetHP();
+
     }
 
     void OnGameOver()
@@ -89,6 +106,7 @@ public class PlayerController : MonoBehaviour
         rb2D.velocity = Vector2.zero;  
         rb2D.angularVelocity = 0f;
         transform.position = startingPos;
+        playerScore.SetPlaying(false);
     }
 
     void Update()
@@ -98,7 +116,10 @@ public class PlayerController : MonoBehaviour
             Movement();
             PlayerJump();
             PlayerGlide();
+            Rotate();
+            CheckForFlip();
         }
+      
     }
 
     void Movement()
@@ -133,6 +154,30 @@ public class PlayerController : MonoBehaviour
         transform.position = playerPos;
     }
 
+    void Rotate()
+    {
+        if(Input.GetKey(KeyCode.Q) && groundCheck == false)
+        {
+            transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
+            flip.Play();
+        }
+        if (Input.GetKey(KeyCode.E) && groundCheck == false)
+        {
+            transform.Rotate(-Vector3.forward * rotationSpeed * Time.deltaTime);
+            flip.Play();
+        }
+    }
+
+    void CheckForFlip()
+    {
+        float currRot = transform.eulerAngles.z;
+        if(Mathf.Abs(currRot -  lastRot) > 180)
+        {
+                didFlip = true;
+        }
+        lastRot = currRot;
+    }
+
     void PlayerJump()
     {
         if (Input.GetButtonDown("Jump") && groundCheck)
@@ -151,13 +196,22 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButton("Jump") && !groundCheck && rb2D.velocity.y < 0)
         {
+     
             isGliding = true;
             rb2D.velocity = new Vector2(rb2D.velocity.x, -glideSpeed);
+            ChangeSprite();
         }
         else
         {
             isGliding = false;
+            animator.enabled = true;
         }
+    }
+
+    public void ChangeSprite()
+    {
+        spriteRenderer.sprite = playerGlidingSprite;
+        animator.enabled = false;
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
@@ -166,6 +220,12 @@ public class PlayerController : MonoBehaviour
         {
             groundCheck = true;
             isGliding = false;
+
+            if (Mathf.Abs(transform.rotation.eulerAngles.z) < 25f && didFlip)  
+            {
+                playerScore.AddScore(10);  
+                didFlip = false; 
+            }
         }
     }
 

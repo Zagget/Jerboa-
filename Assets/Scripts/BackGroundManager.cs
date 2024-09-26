@@ -6,26 +6,38 @@ public class BackGroundManager : MonoBehaviour
     [System.Serializable]
     public class BackgroundLayer
     {
-        public GameObject layer; 
-        public float speed; 
-        [HideInInspector] public float objectWidth; 
-        [HideInInspector] public Vector3 startingPos; 
+        public GameObject layer;
+        public float speed;
+        [HideInInspector] public float objectWidth;
+        [HideInInspector] public Vector3 startingPos;
     }
 
     public List<BackgroundLayer> backgroundLayers;
+    public GameObject parentGameObject;
+
+    // Dictionary to store cloned background layers
+    private Dictionary<BackgroundLayer, GameObject> clonedLayers = new Dictionary<BackgroundLayer, GameObject>();
 
     void Start()
     {
-
-        float height = 2f * Camera.main.orthographicSize;
-        float screenWidth = height * Camera.main.aspect;
-
         foreach (var layer in backgroundLayers)
         {
             if (layer.layer != null)
             {
                 layer.objectWidth = layer.layer.GetComponent<SpriteRenderer>().bounds.size.x;
                 layer.startingPos = layer.layer.transform.position;
+
+                GameObject clone = Instantiate(layer.layer);
+
+                clone.transform.SetParent(parentGameObject.transform);
+
+                //float newPosition =+ layer.objectWidth;
+
+                //clone.transform.localPosition = newPosition;
+
+                clone.transform.Translate(new Vector3(layer.objectWidth, 0, 0), Space.Self);
+
+                clonedLayers.Add(layer, clone);
             }
             else
             {
@@ -36,21 +48,27 @@ public class BackGroundManager : MonoBehaviour
 
     void Update()
     {
-        for (int i = backgroundLayers.Count - 1; i >= 0; i--)
+        foreach (var layer in backgroundLayers)
         {
-            var layer = backgroundLayers[i];
+            MoveBackground(layer, layer.layer);
+            MoveBackground(layer, clonedLayers[layer]);
 
-            if (layer.layer.transform.position.x <= -layer.objectWidth)
+
+            if (layer.layer.transform.position.x < layer.startingPos.x - layer.objectWidth)
             {
-                //layer.layer.transform.position = new Vector3(layer.objectWidth, layer.startingPos.y, layer.layer.transform.position.z);
-                layer.layer.transform.Translate(new Vector3(layer.objectWidth, 0, 0), Space.Self);
+                layer.layer.transform.Translate(new Vector3(layer.objectWidth * 2f, 0, 0), Space.Self);
             }
-            MoveBackground(layer);
+
+            if (clonedLayers[layer].transform.position.x < layer.startingPos.x - layer.objectWidth)
+            {
+
+                clonedLayers[layer].transform.Translate(new Vector3(layer.objectWidth * 2f, 0, 0), Space.Self);
+            }
         }
     }
 
-    void MoveBackground(BackgroundLayer layer)
+    void MoveBackground(BackgroundLayer layer, GameObject background)
     {
-        layer.layer.transform.Translate(Vector3.left * layer.speed * Time.deltaTime);
+        background.transform.Translate(new Vector3(-layer.speed * Time.deltaTime, 0), Space.Self);
     }
 }
