@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -22,7 +23,9 @@ public class PlayerController : MonoBehaviour
     public float glideSpeed = 2f;
     public float glideHorizontalMultiplier = 0.95f;
     public float jumpForce = 5;
-    
+
+    public float UprightSpeed = 2f;
+
     public bool groundCheck = false;
     bool isGliding = false;
     bool didFlip = false;
@@ -58,7 +61,7 @@ public class PlayerController : MonoBehaviour
         halfPlayerWidth = transform.localScale.x / 2f;
         screenHalfWidthInWorldUnits = Camera.main.aspect * Camera.main.orthographicSize;
 
-        
+
         startingPos = rb2D.transform.position;
 
         OnGameOver();
@@ -85,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
 
     }
-    
+
     void OnPlaying()
     {
         transform.position = startingPos; // Set the player's position to starting position
@@ -111,12 +114,12 @@ public class PlayerController : MonoBehaviour
         transform.position = startingPos; // Reset player's position to starting
         isPlaying = false; // Update the game state to not playing
         playerScore.SetPlaying(false);
-       
+
     }
 
     void Update()
     {
-        if (isPlaying) 
+        if (isPlaying)
         {
             Movement();
             PlayerJump();
@@ -124,7 +127,7 @@ public class PlayerController : MonoBehaviour
             Rotate();
             CheckForFlip();
         }
-      
+
     }
 
     void Movement()
@@ -134,19 +137,14 @@ public class PlayerController : MonoBehaviour
         xVelocity += x * acceleration * Time.deltaTime;
         xVelocity = Mathf.Clamp(xVelocity, -maxSpeed, maxSpeed);
 
+        if (groundCheck)
+        {
+            UprightRotation();
+        }
+
         if (isGliding)
         {
             xVelocity *= glideHorizontalMultiplier;
-        } 
-        
-
-        if (groundCheck)
-        {
-            rb2D.velocity = new Vector2(xVelocity, rb2D.velocity.y);
-        }
-        else
-        {
-            rb2D.velocity = new Vector2(xVelocity, rb2D.velocity.y);
         }
 
         if (x == 0)
@@ -159,9 +157,18 @@ public class PlayerController : MonoBehaviour
         transform.position = playerPos;
     }
 
+    private void UprightRotation()
+    {
+        float currentZRotation = transform.rotation.eulerAngles.z;
+        float targetZRotation = -8.096f;
+
+        float newZRotation = Mathf.LerpAngle(currentZRotation, targetZRotation, Time.deltaTime);
+        transform.rotation = Quaternion.Euler(0,0, newZRotation);
+    }
+
     void Rotate()
     {
-        if(Input.GetKey(KeyCode.Q) && groundCheck == false)
+        if (Input.GetKey(KeyCode.Q) && groundCheck == false)
         {
             transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime, Space.Self);
             flip.Play();
@@ -176,9 +183,9 @@ public class PlayerController : MonoBehaviour
     void CheckForFlip()
     {
         float currRot = transform.eulerAngles.z;
-        if(Mathf.Abs(currRot -  lastRot) > 180)
+        if (Mathf.Abs(currRot - lastRot) > 180)
         {
-                didFlip = true;
+            didFlip = true;
         }
         lastRot = currRot;
     }
@@ -189,7 +196,7 @@ public class PlayerController : MonoBehaviour
         {
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
             jump.Play();
-           
+
         }
         if (Input.GetButtonUp("Jump") && rb2D.velocity.y > 0)
         {
@@ -201,7 +208,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButton("Jump") && !groundCheck && rb2D.velocity.y < 0)
         {
-     
+
             isGliding = true;
             rb2D.velocity = new Vector2(rb2D.velocity.x, -glideSpeed);
             animator.runtimeAnimatorController = GlidingAnimationController;
@@ -220,10 +227,10 @@ public class PlayerController : MonoBehaviour
             groundCheck = true;
             isGliding = false;
 
-            if (Mathf.Abs(transform.rotation.eulerAngles.z) < 25f && didFlip)  
+            if (Mathf.Abs(transform.rotation.eulerAngles.z) < 25f && didFlip)
             {
-                playerScore.AddScore(10);  
-                didFlip = false; 
+                playerScore.AddScore(10);
+                didFlip = false;
             }
 
             else if(Mathf.Abs(transform.rotation.eulerAngles.z) > 180 && didFlip)
