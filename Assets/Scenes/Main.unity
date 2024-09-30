@@ -3710,13 +3710,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: 743cd606bb9255f4fb1664d2515d444e, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 743cd606bb9255f4fb1664d2515d444e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.165
+      value: -7.12
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 743cd606bb9255f4fb1664d2515d444e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.1
+      value: 4.63
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 743cd606bb9255f4fb1664d2515d444e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3765,13 +3769,13 @@ PrefabInstance:
       addedObject: {fileID: 148948324}
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 743cd606bb9255f4fb1664d2515d444e, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 148948328}
+    - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 743cd606bb9255f4fb1664d2515d444e, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 148948323}
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 743cd606bb9255f4fb1664d2515d444e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 148948322}
-    - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 743cd606bb9255f4fb1664d2515d444e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 148948328}
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 743cd606bb9255f4fb1664d2515d444e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 148948333}

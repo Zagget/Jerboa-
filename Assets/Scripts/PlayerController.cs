@@ -5,20 +5,17 @@ public class PlayerController : MonoBehaviour
     public GameObject gameUI;
     public GameObject player;
 
-
     SpriteRenderer spriteRenderer;
     public Sprite playerGlidingSprite;
     public Animator animator;
     public RuntimeAnimatorController GlidingAnimationController;
     public RuntimeAnimatorController BasicAnimationController;
 
-
-
     public float maxSpeed = 8f;
     public float acceleration = 5f;
     public float deceleration = 10f;
 
-    public float rotationSpeed;
+    public float rotationSpeed = 5f;
     public float glideSpeed = 2f;
     public float glideHorizontalMultiplier = 0.95f;
     public float jumpForce = 5;
@@ -88,41 +85,38 @@ public class PlayerController : MonoBehaviour
     
     void OnPlaying()
     {
-        transform.position = startingPos; // Set the player's position to starting position
-        rb2D.gravityScale = 0f;
+        transform.position = startingPos;
         rb2D.angularVelocity = 0f;
-        rb2D.gravityScale = 1f; // Enable gravity for the player
-        gameUI.SetActive(true); // Activate the game UI
-        spriteRenderer.enabled = true; // Enable player sprite
-        isPlaying = true; // Update the game state
-        playerScore.ResetScore(); // Reset the player's score
-        playerScore.SetPlaying(true); // Notify the score manager that the game is ongoing
-        didFlip = false; // Reset flip state
-        obstacleCollision1.ResetHP(); // Reset the obstacle's hit points
-
+        rb2D.gravityScale = 1f;
+        gameUI.SetActive(true);
+        spriteRenderer.enabled = true;
+        isPlaying = true;
+        playerScore.ResetScore(); 
+        playerScore.SetPlaying(true); 
+        didFlip = false;
+        obstacleCollision1.ResetHP(); 
     }
 
     void OnGameOver()
     {
-        rb2D.gravityScale = 0f; // Disable gravity
-        rb2D.angularVelocity = 0f; // Stop any rotation
-        rb2D.velocity = Vector2.zero; // Stop all movement
-        spriteRenderer.enabled = false; // Hide player sprite
-        transform.position = startingPos; // Reset player's position to starting
-        isPlaying = false; // Update the game state to not playing
+        isPlaying = false; 
+        rb2D.gravityScale = 0f; 
+        rb2D.angularVelocity = 0f; 
+        rb2D.velocity = Vector2.zero; 
+        spriteRenderer.enabled = false;
+        transform.position = startingPos; 
         playerScore.SetPlaying(false);
-       
     }
 
     void Update()
     {
         if (isPlaying) 
         {
-            Movement();
             PlayerJump();
             PlayerGlide();
             Rotate();
             CheckForFlip();
+            Movement();
         }
       
     }
@@ -163,12 +157,13 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.Q) && groundCheck == false)
         {
-            transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime, Space.Self);
+            float deltaRotation = rotationSpeed * Time.deltaTime;
+            rb2D.MoveRotation(rb2D.rotation + deltaRotation);
         }
         if (Input.GetKey(KeyCode.E) && groundCheck == false)
         {
-            transform.Rotate(-Vector3.forward * rotationSpeed * Time.deltaTime, Space.Self);
-
+            float deltaRotation = rotationSpeed * Time.deltaTime;
+            rb2D.MoveRotation(rb2D.rotation - deltaRotation);
         }
     }
 
@@ -228,13 +223,10 @@ public class PlayerController : MonoBehaviour
             else if(Mathf.Abs(transform.rotation.eulerAngles.z) > 180 && didFlip)
             {
                // OnGameOver();
-
-       
             }
         }   
-
-        
     }
+
     public void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))

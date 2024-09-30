@@ -58,8 +58,8 @@ public class UiManager : MonoBehaviour
                 break;
 
             case "exit":
-                EditorApplication.isPlaying = false;
-                //Application.Quit();
+                //EditorApplication.isPlaying = false;
+                Application.Quit();
                 break;
         }
     }
